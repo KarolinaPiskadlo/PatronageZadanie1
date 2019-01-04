@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace PatronageZadanie1
 {
@@ -21,6 +22,8 @@ namespace PatronageZadanie1
                         obDeepDive.DeepDive();
                         break;
                     case 3:
+                        var obDrownItDown = new DrownItDownGenerator();
+                        obDrownItDown.DrownItDown();
                         break;
                     case 4:
                         loopBreak = false;

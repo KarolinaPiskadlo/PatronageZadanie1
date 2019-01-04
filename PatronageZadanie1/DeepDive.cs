@@ -45,14 +45,7 @@ namespace PatronageZadanie1
             Console.WriteLine("Tworzenie folderów w :");
             Console.WriteLine(currentDirectory);
 
-            for (int i = 1; i <= number; i++)
-            {
-                Guid guid;
-                guid = Guid.NewGuid();
-                string path = System.IO.Path.Combine(currentDirectory, guid.ToString());
-                System.IO.Directory.CreateDirectory(path);
-                currentDirectory = path;
-            }
+            Recurrence(number, currentDirectory);  
         }
 
         private bool IsInRange(int val)
@@ -65,6 +58,28 @@ namespace PatronageZadanie1
             {
                 return false;
             }
+        }
+
+        private void Recurrence(int number, string path)
+        {
+            if (number <= 0)
+                return;
+
+            Guid guid = Guid.NewGuid();
+            string path2 = System.IO.Path.Combine(path, guid.ToString());
+
+            if (!Directory.Exists(path2))
+            {
+                System.IO.Directory.CreateDirectory(path2);
+            }
+            else
+            {
+                Console.WriteLine("Nie można utworzyć folderu o nazwie: ", guid);
+                Console.WriteLine("Folder o takiej nazwie już istnieje.");
+            }
+
+            path = path2;
+            Recurrence(--number, path);
         }
     }
 }
