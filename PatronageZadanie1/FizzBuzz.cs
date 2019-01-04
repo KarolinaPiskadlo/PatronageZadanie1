@@ -6,6 +6,9 @@ namespace PatronageZadanie1
 {
     class FizzBuzzGenerator
     {
+        private const int MIN_RANGE = 0;
+        private const int MAX_RANGE = 1000;
+
         public void FizzBuzz()
         {
             bool isDivisible = false;
@@ -16,7 +19,7 @@ namespace PatronageZadanie1
 
             if (!IsInRange(returnValue))
             {
-                Console.WriteLine("Podano złą wartość!");
+                Console.WriteLine("Podano złą wartość.");
                 return;
             }
 
@@ -28,7 +31,7 @@ namespace PatronageZadanie1
 
             if (returnValue % 3 == 0)
             {
-                Console.WriteLine("Buzz");
+                Console.Write("Buzz");
                 isDivisible = true;
             }
 
@@ -36,12 +39,16 @@ namespace PatronageZadanie1
             {
                 Console.WriteLine("Podana liczba nie jest podzielna ani przez 2, ani przez 3.");
             }
+            else
+            {
+                Console.WriteLine();
+            }
         }
 
         private int FizzBuzzStart()
         {
             Console.WriteLine("\n --------------- FizzBuzz ---------------");
-            Console.Write("Podaj liczbę w przedziale od 0 do 1000: ");
+            Console.Write($"Podaj liczbę w przedziale od {MIN_RANGE} do {MAX_RANGE}: ");
 
             try
             {
@@ -49,14 +56,14 @@ namespace PatronageZadanie1
             }
             catch (Exception)
             {
-                Console.WriteLine("Musisz podać liczbę!");
+                Console.WriteLine("Musisz podać liczbę.");
                 return -1;
             }
         }
 
         private bool IsInRange(int val)
         {
-            if (val >= 0 && val <= 1000)
+            if (val >= MIN_RANGE && val <= MAX_RANGE)
             {
                 return true;
             }

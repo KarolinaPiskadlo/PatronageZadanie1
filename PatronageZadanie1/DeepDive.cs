@@ -7,6 +7,9 @@ namespace PatronageZadanie1
 {
     class DeepDiveGenerator
     {
+        private const int MIN_RANGE = 1;
+        private const int MAX_RANGE = 5;
+
         public void DeepDive()
         {
             int numberOfFolders = DeepDiveStart();
@@ -16,7 +19,7 @@ namespace PatronageZadanie1
 
             if (!IsInRange(numberOfFolders))
             {
-                Console.WriteLine("Podano złą wartość!");
+                Console.WriteLine("Podano złą wartość.");
                 return;
             }
             CreateFolder(numberOfFolders);
@@ -25,7 +28,7 @@ namespace PatronageZadanie1
         private int DeepDiveStart()
         {
             Console.WriteLine("\n --------------- DeepDive ---------------");
-            Console.Write("Ile folderów zagnieżdżonych utworzyć? Podaj liczbę od 1 do 5: ");
+            Console.Write($"Ile folderów zagnieżdżonych utworzyć? Podaj liczbę od {MIN_RANGE} do {MAX_RANGE}: ");
 
             try
             {
@@ -33,7 +36,7 @@ namespace PatronageZadanie1
             }
             catch (Exception)
             {
-                Console.WriteLine("Musisz podać liczbę!");
+                Console.WriteLine("Musisz podać liczbę.");
                 return -1;
             }
         }
@@ -45,12 +48,12 @@ namespace PatronageZadanie1
             Console.WriteLine("Tworzenie folderów w :");
             Console.WriteLine(currentDirectory);
 
-            Recurrence(number, currentDirectory);  
+            CreateFolder(number, currentDirectory);  
         }
 
         private bool IsInRange(int val)
         {
-            if (val >= 1 && val <= 5)
+            if (val >= MIN_RANGE && val <= MAX_RANGE)
             {
                 return true;
             }
@@ -60,26 +63,25 @@ namespace PatronageZadanie1
             }
         }
 
-        private void Recurrence(int number, string path)
+        private void CreateFolder(int number, string path)
         {
             if (number <= 0)
                 return;
 
             Guid guid = Guid.NewGuid();
-            string path2 = System.IO.Path.Combine(path, guid.ToString());
+            path = System.IO.Path.Combine(path, guid.ToString());
 
-            if (!Directory.Exists(path2))
+            if (!Directory.Exists(path))
             {
-                System.IO.Directory.CreateDirectory(path2);
+                System.IO.Directory.CreateDirectory(path);
             }
             else
             {
-                Console.WriteLine("Nie można utworzyć folderu o nazwie: ", guid);
+                Console.WriteLine($"Nie można utworzyć folderu o nazwie: {guid}");
                 Console.WriteLine("Folder o takiej nazwie już istnieje.");
             }
 
-            path = path2;
-            Recurrence(--number, path);
+            CreateFolder(--number, path);
         }
     }
 }

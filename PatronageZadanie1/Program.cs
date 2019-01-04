@@ -29,6 +29,7 @@ namespace PatronageZadanie1
                         loopBreak = false;
                         break;
                     default:
+                        Console.WriteLine("Wprowadzono złą wartość.");
                         break;
                 }
             } while (loopBreak);
@@ -39,7 +40,7 @@ namespace PatronageZadanie1
         static int Menu()
         {
             Console.WriteLine("\n --------------- MENU ---------------");
-            Console.WriteLine("Wybierz jedna z podanych nizej metod podajac cyfre od 1 do 4:");
+            Console.WriteLine("Wybierz jedna z podanych nizej metod podajac liczbę od 1 do 4:");
             Console.WriteLine("\n \t 1. FizzBuzz");
             Console.WriteLine("\t 2. DeepDive");
             Console.WriteLine("\t 3. DrownItDown");
@@ -51,7 +52,7 @@ namespace PatronageZadanie1
             }
             catch (Exception)
             {
-                Console.WriteLine("Musisz podać cyfrę! \n");
+                Console.WriteLine("Musisz podać liczbę. \n");
                 return -1;
             }
         }

@@ -7,6 +7,10 @@ namespace PatronageZadanie1
 {
     class DrownItDownGenerator
     {
+        private const int MIN_RANGE = 1;
+        private const int MAX_RANGE = 5;
+        private const string FILE = "plik.txt";
+
         public void DrownItDown()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
@@ -17,12 +21,12 @@ namespace PatronageZadanie1
 
             int folderNumber = DrownItDownStart();
 
-            if (folderNumber == -1)                             // jesli nie podano liczby to idz do menu
+            if (folderNumber == -1)
                 return;
 
-            if (!IsInRange(folderNumber))                       // jesli liczba mniejsza od 1 i wieksza od 5 to idz do menu
+            if (!IsInRange(folderNumber))
             {
-                Console.WriteLine("Podano złą wartość!");
+                Console.WriteLine("Podano złą wartość.");
                 return;
             }
 
@@ -62,7 +66,7 @@ namespace PatronageZadanie1
 
             if (folderCount == 0)
             {
-                Console.WriteLine("Nie można utworzyć pliku! Brak folderów w ścieżce głównej!");
+                Console.WriteLine("Nie można utworzyć pliku! Brak folderów w ścieżce głównej.");
                 Console.WriteLine("Uruchom aplikację DeepDive i utwórz odpowiednią ilość folderów zagnieżdżonych, " +
                     " \n a następnie ponownie uruchom aplikację DrownItDown");
                 return -1;
@@ -74,7 +78,7 @@ namespace PatronageZadanie1
         private int DrownItDownStart()
         {
             Console.WriteLine("\n --------------- DrownItDown ---------------");
-            Console.Write("W którym folderze utworzyć pusty plik? Podaj cyfrę od 1 do 5: ");
+            Console.Write($"W którym folderze utworzyć pusty plik? Podaj liczbę od {MIN_RANGE} do {MAX_RANGE}: ");
 
             try
             {
@@ -82,14 +86,14 @@ namespace PatronageZadanie1
             }
             catch (Exception)
             {
-                Console.WriteLine("Musisz podać cyfrę!");
+                Console.WriteLine("Musisz podać liczbę.");
                 return -1;
             }
         }
 
         private bool IsInRange(int val)
         {
-            if (val >= 1 && val <= 5)
+            if (val >= MIN_RANGE && val <= MAX_RANGE)
             {
                 return true;
             }
@@ -104,7 +108,7 @@ namespace PatronageZadanie1
             int counter = 1;
 
             while (counter < folderNumber)
-            {   
+            {
                 if (IsNotEmpty(path))
                 {
                     path = Directory.GetDirectories(path)[0];
@@ -121,23 +125,23 @@ namespace PatronageZadanie1
 
         private void CreateFile(string path, int folderNumber)
         {
-            string file = "plik.txt";
             for (int i = 1; i < folderNumber; i++)
             {
                 path = Directory.GetDirectories(path)[0];
             }
 
-            path = Path.Combine(path, file);
+            path = Path.Combine(path, FILE);
 
             if (File.Exists(path))
             {
-                Console.Write("Plik o nazwie {0} już istnieje. Czy nadpisać plik {0}? (T - tak, N - nie) ", file);
+                Console.Write($"Plik o nazwie {FILE} już istnieje. Czy nadpisać plik {FILE}? (T - tak, N - nie) ");
 
                 switch (Console.ReadLine())
                 {
                     case "T":
                         File.Create(path).Dispose();
-                        Console.WriteLine("\nNadpisano plik o nazwie {0} ", file);
+                        Console.WriteLine($"\nNadpisano plik o nazwie {FILE}: ");
+                        Console.WriteLine(path);
                         break;
                     case "N":
                         break;
@@ -148,7 +152,8 @@ namespace PatronageZadanie1
             else
             {
                 File.Create(path).Dispose();
-                Console.WriteLine("\nUtworzono plik o nazwie {0} ", file);
+                Console.WriteLine($"\nUtworzono plik o nazwie {FILE}: ");
+                Console.WriteLine(path);
             }
         }
 
