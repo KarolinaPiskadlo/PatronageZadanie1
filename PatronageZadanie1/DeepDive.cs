@@ -11,7 +11,7 @@ namespace PatronageZadanie1
         private const int MAX_RANGE = 5;
 
         /// <summary>
-        /// Create nested folders with GUID generated name
+        /// Create nested folders with GUID generated name.
         /// </summary>
         public void DeepDive()
         {
@@ -69,6 +69,11 @@ namespace PatronageZadanie1
             }
         }
 
+        /// <summary>
+        /// Create "<paramref name="number"/>" folders in the "<paramref name="path"/>."
+        /// </summary>
+        /// <param name="number">The number of nested folders.</param>
+        /// <param name="path">The path where nested folders are created.</param>
         private void CreateFolder(int number, string path)
         {
             if (number <= 0)

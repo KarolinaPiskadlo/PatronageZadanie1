@@ -18,6 +18,7 @@ namespace PatronageZadanie1
         public void DrownItDown()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
+            // Numbers of folders in currentDirectory.
             int foldersCount = FoldersCountCurrentDirectory(currentDirectory);
 
             if (foldersCount == -1)
@@ -25,6 +26,7 @@ namespace PatronageZadanie1
                 return;
             }
 
+            // Nested folder number where user want to create a file.
             int folderNumber = DrownItDownStart();
 
             if (folderNumber == -1)
@@ -113,6 +115,12 @@ namespace PatronageZadanie1
             }
         }
 
+        /// <summary>
+        /// Verifies if there is a sufficient number of folders." 
+        /// </summary>
+        /// <param name="folderNumber">Nested folder number.</param>
+        /// <param name="path">Path to check.</param>
+        /// <returns>Possibility of creating a file.</returns>
         private bool FolderExist(int folderNumber, string path)
         {
             int counter = 1;

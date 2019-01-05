@@ -10,7 +10,7 @@ namespace PatronageZadanie1
         private const int MAX_RANGE = 1000;
 
         /// <summary>
-        /// Take a numerical parameter and then print "Fizz" if divided by 2, 
+        /// Take a numerical parameter and then print "Fizz" if divided by 2,
         /// "Buzz" if divided by 3, "FizzBuzz" if divided by both.
         /// </summary>
         public void FizzBuzz()
