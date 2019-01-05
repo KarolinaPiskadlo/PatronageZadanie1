@@ -10,18 +10,24 @@ namespace PatronageZadanie1
         private const int MIN_RANGE = 1;
         private const int MAX_RANGE = 5;
 
+        /// <summary>
+        /// Create nested folders with GUID generated name
+        /// </summary>
         public void DeepDive()
         {
             int numberOfFolders = DeepDiveStart();
 
             if (numberOfFolders == -1)
+            {
                 return;
+            }
 
             if (!IsInRange(numberOfFolders))
             {
                 Console.WriteLine("Podano złą wartość.");
                 return;
             }
+
             CreateFolder(numberOfFolders);
         }
 
@@ -48,7 +54,7 @@ namespace PatronageZadanie1
             Console.WriteLine("Tworzenie folderów w :");
             Console.WriteLine(currentDirectory);
 
-            CreateFolder(number, currentDirectory);  
+            CreateFolder(number, currentDirectory);
         }
 
         private bool IsInRange(int val)
@@ -66,7 +72,9 @@ namespace PatronageZadanie1
         private void CreateFolder(int number, string path)
         {
             if (number <= 0)
+            {
                 return;
+            }
 
             Guid guid = Guid.NewGuid();
             path = System.IO.Path.Combine(path, guid.ToString());

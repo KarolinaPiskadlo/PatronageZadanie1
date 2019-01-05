@@ -14,16 +14,16 @@ namespace PatronageZadanie1
                 switch (method)
                 {
                     case 1:
-                        var obFizzBuzz = new FizzBuzzGenerator();
-                        obFizzBuzz.FizzBuzz();
+                        var fizzBuzz = new FizzBuzzGenerator();
+                        fizzBuzz.FizzBuzz();
                         break;
                     case 2:
-                        var obDeepDive = new DeepDiveGenerator();
-                        obDeepDive.DeepDive();
+                        var deepDive = new DeepDiveGenerator();
+                        deepDive.DeepDive();
                         break;
                     case 3:
-                        var obDrownItDown = new DrownItDownGenerator();
-                        obDrownItDown.DrownItDown();
+                        var drownItDown = new DrownItDownGenerator();
+                        drownItDown.DrownItDown();
                         break;
                     case 4:
                         loopBreak = false;
